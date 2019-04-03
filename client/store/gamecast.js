@@ -67,7 +67,7 @@ const getGamecast = gamecast => ({ type: GET_GAMECAST, gamecast })
 export const fetchGamecast = () => async dispatch => {
   try {
     const { data } = await axios.get(
-      'https://my-json-server.typicode.com/fanduel/moneyball-fe-challenge-data/Gamecast_scoreboard'
+      'https://my-json-server.typicode.com/fanduel/moneyball-fe-challenge-data/game_stats'
     )
     dispatch(getGamecast(data || defaultGamecast))
   } catch (err) {
