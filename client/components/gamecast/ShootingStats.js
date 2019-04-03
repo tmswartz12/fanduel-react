@@ -1,7 +1,6 @@
 import React from 'react'
 
 const ShootingStats = props => {
-  console.log(props)
   return (
     <div className="shooting-stats-column">
       {props.shootingStats.map((stat, idx) => {
