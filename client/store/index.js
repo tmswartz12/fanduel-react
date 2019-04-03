@@ -12,4 +12,5 @@ const middleware = composeWithDevTools(
 const store = createStore(reducer, middleware)
 
 export default store
+export * from './gamecast'
 export * from './footer'
