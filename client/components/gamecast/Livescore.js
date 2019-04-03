@@ -2,8 +2,6 @@ import React from 'react'
 import { ordinalHelper } from '../../utils'
 
 const Livescore = props => {
-  console.log('gameCastData', props.gamecastData)
-
   let ordinal = ordinalHelper(props.gamecastData.quarter)
 
   let homeTeamName = props.gamecastData.home_team.name.toUpperCase()
