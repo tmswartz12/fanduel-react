@@ -3,11 +3,7 @@ import React from 'react'
 const Navbar = () => {
   return (
     <div className="nav-bar">
-      <img
-        className="fanduel-logo"
-        alt="FanDuel Logo"
-        src="../../public/logo.png"
-      />
+      <img src="images/logo.png" className="fanduel-logo" alt="FanDuel Logo" />
       <nav className="nav-menu-left">
         <div className="nav-link-container">
           <div className="nav-link">Lobby</div>

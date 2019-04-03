@@ -1,98 +1,61 @@
 import React from 'react'
+import {
+  ordinalHelper,
+  scoringPlayerHelper,
+  descriptionHelper
+} from '../../utils'
 
 const PlayByPlay = props => {
   return (
     <div className="game-info-column play-by-play">
       <div className="header">PLAY BY PLAY</div>
-      <div className="recent-play">
-        <img
-          className="recent-play-player-img"
-          alt="Stephen Curry Golden State Warriors"
-          src="/public/images/StephCurry.png"
-        />
-        <div className="recent-play-column">
-          <div className="recent-play-description">
-            <div className="recent-play-time">7:34 4th</div>
-            <div>
-              <span className="bold">Stephen Curry</span> makes 13 foot jumper.
-            </div>
-            <div>
-              Assisted by <span className="bold">Draymond Green.</span>
-            </div>
-          </div>
-          <div className="recent-play-score bold">96-81, GS</div>
-        </div>
-      </div>
-      <div className="recent-play">
-        <img
-          className="recent-play-player-img"
-          alt="Kevin Durant Oklahoma City Thunder"
-          src="/public/images/KevinDurant.png"
-        />
-        <div className="recent-play-column">
-          <div className="recent-play-description">
-            <div className="recent-play-time">7:46 4th</div>
-            <div>
-              <span className="bold">Kevin Durant</span> misses 2-foot layup.
-            </div>
-            <div>
-              Rebounded by <span className="bold">Andrew Bogut.</span>
-            </div>
-          </div>
-          <div className="recent-play-score bold">94-81, GS</div>
-        </div>
-      </div>
-      <div className="recent-play">
-        <img
-          className="recent-play-player-img"
-          alt="Klay Thompson Golden State Warriors"
-          src="/public/images/KlayThompson.png"
-        />
-        <div className="recent-play-column">
-          <div className="recent-play-description">
-            <div className="recent-play-time">7:55 4th</div>
-            <div>
-              <span className="bold">Klay Thompson</span> misses 24-foot jumper.
-            </div>
-            <div>
-              Rebounded by<span className="bold"> Serge Ibaka.</span>
+
+      {props.playByPlay.map(play => {
+        let ordinal = ordinalHelper(play.quarter)
+        let scoringPlayer = scoringPlayerHelper(play.scoring_player)
+        let updatedDescription = descriptionHelper(play.description)
+        let homeScore = play.home_score
+        let awayScore = play.away_score
+
+        let firstScore
+        let secondScore
+        let teamAbbrev
+
+        if (homeScore >= awayScore) {
+          firstScore = homeScore
+          secondScore = awayScore
+          teamAbbrev = props.home
+        } else {
+          secondScore = homeScore
+          firstScore = awayScore
+          teamAbbrev = props.away
+        }
+
+        return (
+          <div key={play.id} className="recent-play">
+            <img
+              src={`images/${play.scoring_player}.png`}
+              className="recent-play-player-img"
+              alt={`${scoringPlayer}`}
+            />
+            <div className="recent-play-column">
+              <div className="recent-play-description">
+                <div className="recent-play-time">{`${play.time_left} ${
+                  play.quarter
+                }${ordinal}`}</div>
+                <div>
+                  <span className="bold">{`${scoringPlayer}`}</span>{' '}
+                  {`${updatedDescription[0]}`}
+                </div>
+                {updatedDescription[1] && (
+                  <div>{`${updatedDescription[1]}`}</div>
+                )}
+              </div>
+              <div className="recent-play-score bold">{`${firstScore} - ${secondScore}, ${teamAbbrev}`}</div>
             </div>
           </div>
-          <div className="recent-play-score bold">94-81, GS</div>
-        </div>
-      </div>
-      <div className="recent-play">
-        <img
-          className="recent-play-player-img"
-          alt="Kevin Durant Oklahoma City Thunder"
-          src="/public/images/KevinDurant.png"
-        />
-        <div className="recent-play-column">
-          <div className="recent-play-description">
-            <div className="recent-play-time">8:17 4th</div>
-            <div>
-              <span className="bold">Kevin Durant</span> turnover.
-            </div>
-          </div>
-          <div className="recent-play-score bold">94-81, GS</div>
-        </div>
-      </div>
-      <div className="recent-play">
-        <img
-          className="recent-play-player-img"
-          alt="Stephen Curry Golden State Warriors"
-          src="/public/images/StephCurry.png"
-        />
-        <div className="recent-play-column">
-          <div className="recent-play-description">
-            <div className="recent-play-time">8:27 4th</div>
-            <div>
-              <span className="bold">Stephen Curry</span> makes free throw.
-            </div>
-          </div>
-          <div className="recent-play-score bold">94-81, GS</div>
-        </div>
-      </div>
+        )
+      })}
     </div>
   )
 }

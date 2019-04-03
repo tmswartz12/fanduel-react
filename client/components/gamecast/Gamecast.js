@@ -43,7 +43,7 @@ class Gamecast extends React.Component {
                   <img
                     className="shotchart"
                     alt="FanDuel Game Cast"
-                    src="/public/images/court.png"
+                    src="images/court.png"
                   />
                   <ShootingStats
                     shootingStats={
@@ -56,7 +56,11 @@ class Gamecast extends React.Component {
             </div>
           </div>
           <div className="main-body-left-row">
-            <PlayByPlay playByPlay={this.props.playByPlayData} />
+            <PlayByPlay
+              playByPlay={this.props.playByPlayData}
+              home={this.props.gamecastData.home_team.abbrev}
+              away={this.props.gamecastData.away_team.abbrev}
+            />
             <div className="game-info-column stats">
               <div className="header">STATS</div>
             </div>
