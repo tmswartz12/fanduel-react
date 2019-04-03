@@ -1,75 +1,133 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { fetchFooter } from '../store'
+import { ordinalHelper } from '../utils'
 
-const Footer = () => {
-  return (
-    <footer className="footer">
-      <div className="league-row">
-        <div className="league league-active">NBA</div>
-        <div className="league">MLB</div>
-        <div className="league">NCAAF</div>
-      </div>
-      <div className="boxscore">
-        <div className="previous-boxscore">
-          <i className="fas fa-angle-left" />
+class Footer extends React.Component {
+  constructor(props) {
+    super()
+    this.state = {
+      loaded: false
+    }
+  }
+
+  componentDidMount() {
+    this.props.fetchFooter()
+    this.setState({ loaded: true })
+  }
+
+  render() {
+    let footerData = this.props.footerData
+    return (
+      <footer className="footer">
+        <div className="league-row">
+          <div className="league league-active">NBA</div>
+          <div className="league">MLB</div>
+          <div className="league">NCAAF</div>
         </div>
-        <div className="active-boxscore">
-          <div className="active-boxscore-row">
-            <div className="active-boxscore-column">
-              <div className="boxscore-team">
-                <div className="boxscore-team-home">WARRIORS</div>
-                <div className="boxscore-team-away">THUNDER</div>
-              </div>
-              <div className="boxscore-score bold">
-                <div>96</div>
-                <div>81</div>
-              </div>
-            </div>
-            <div className="top-player">
-              <div className="team-column">GSW</div>
-              <div className="top-player-column">
-                <div>S. Curry, PG</div>
-                <div className="top-player-stats">23 points, 6 assists</div>
-              </div>
-            </div>
-            <div className="top-player">
-              <div className="team-column">OKC</div>
-              <div className="top-player-column">
-                <div>K. Durant, SF</div>
-                <div className="top-player-stats">30 points, 9 rebounds</div>
-              </div>
-            </div>
+        <div className="boxscore">
+          <div className="previous-boxscore">
+            <i className="fas fa-angle-left" />
           </div>
-          <div className="active-boxscore-game-clock">7:34 4th TV: ESPN</div>
+          {footerData.map((game, idx) => {
+            let ordinal = ordinalHelper(game.quarter)
+            if (idx === 0) {
+              return (
+                <div key={game.game_id} className="active-boxscore">
+                  <div className="active-boxscore-row">
+                    <div className="active-boxscore-column">
+                      <div className="boxscore-team">
+                        <div className="boxscore-team-home">{`${
+                          game.away_team.name
+                        }`}</div>
+                        <div className="boxscore-team-away">{`${
+                          game.home_team.name
+                        }`}</div>
+                      </div>
+                      <div className="boxscore-score bold">
+                        <div>{`${game.away_team.score}`}</div>
+                        <div>{`${game.home_team.score}`}</div>
+                      </div>
+                    </div>
+                    <div className="top-player">
+                      <div className="team-column">{`${
+                        game.top_performers[0].team
+                      }`}</div>
+                      <div className="top-player-column">
+                        <div>{`${game.top_performers[0].name}, ${
+                          game.top_performers[0].position
+                        }`}</div>
+                        <div className="top-player-stats">
+                          {`${game.top_performers[0].points}points, ${
+                            game.top_performers[0].rebounds
+                          } assists`}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="top-player">
+                      <div className="team-column">{`${
+                        game.top_performers[1].team
+                      }`}</div>
+                      <div className="top-player-column">
+                        <div>{`${game.top_performers[1].name}, ${
+                          game.top_performers[1].position
+                        }`}</div>
+                        <div className="top-player-stats">
+                          {`${game.top_performers[1].points}points, ${
+                            game.top_performers[1].rebounds
+                          } assists`}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="active-boxscore-game-clock">
+                    {`${game.time_left} ${game.quarter}${ordinal} TV: ESPN`}
+                  </div>
+                </div>
+              )
+            } else {
+              return (
+                <div key={game.game_id}>
+                  <div className="unactive-boxscore">
+                    <div className="unactive-boxscore-row">
+                      <div className="unactive-boxscore-team-column">
+                        <div>{`${game.away_team.abbrev}`}</div>
+                        <div>{`${game.home_team.abbrev}`}</div>
+                      </div>
+                      <div className="unactive-boxscore-score-column">
+                        <div>{`${game.away_team.score}`}</div>
+                        <div>{`${game.home_team.score}`}</div>
+                      </div>
+                    </div>
+                    <div className="unactive-boxscore-game-clock">{`${
+                      game.time_left
+                    } ${game.quarter}${ordinal}`}</div>
+                  </div>
+                </div>
+              )
+            }
+          })}
         </div>
-        <div className="unactive-boxscore">
-          <div className="unactive-boxscore-row">
-            <div className="unactive-boxscore-team-column">
-              <div>CHI</div>
-              <div>BOS</div>
-            </div>
-            <div className="unactive-boxscore-score-column">
-              <div>56</div>
-              <div>54</div>
-            </div>
-          </div>
-          <div className="unactive-boxscore-game-clock">6:33 3rd</div>
-        </div>
-        <div className="unactive-boxscore">
-          <div className="unactive-boxscore-row">
-            <div className="unactive-boxscore-team-column">
-              <div>ATL</div>
-              <div>MEM</div>
-            </div>
-            <div className="unactive-boxscore-score-column">
-              <div>26</div>
-              <div>24</div>
-            </div>
-          </div>
-          <div className="unactive-boxscore-game-clock">12:00 2nd</div>
-        </div>
-      </div>
-    </footer>
-  )
+      </footer>
+    )
+  }
 }
 
-export default Footer
+const mapProps = state => {
+  return {
+    footerData: state.footer.results
+  }
+}
+
+const mapDispatch = dispatch => {
+  return {
+    fetchFooter: () => dispatch(fetchFooter())
+  }
+}
+
+const Connected = connect(
+  mapProps,
+  mapDispatch
+)(Footer)
+
+export default Connected
