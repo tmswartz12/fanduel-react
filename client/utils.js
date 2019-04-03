@@ -1,6 +1,6 @@
-export function ordinalHelper(num) {
+export function ordinalHelper(quarter) {
   let ordinal
-  switch (num) {
+  switch (quarter) {
     case 1:
       ordinal = 'st'
       break
@@ -17,4 +17,34 @@ export function ordinalHelper(num) {
       ordinal = ''
   }
   return ordinal
+}
+
+export function scoringPlayerHelper(name) {
+  if (name.length === 0) {
+    return name
+  }
+  let nameArr = name.split('_')
+
+  for (let i = 0; i < nameArr.length; i++) {
+    nameArr[i] = nameArr[i].charAt(0).toUpperCase() + nameArr[i].substring(1)
+  }
+
+  return nameArr.join(' ')
+}
+
+export function descriptionHelper(description) {
+  if (description.length === 0) {
+    return ['']
+  }
+  let descriptionArr = description.split(' ')
+  let updatedDescriptionArr = []
+  let temp = []
+  for (let i = 2; i < descriptionArr.length; i++) {
+    temp.push(descriptionArr[i])
+    if (descriptionArr[i].endsWith('.')) {
+      updatedDescriptionArr.push(temp.join(' '))
+      temp = []
+    }
+  }
+  return updatedDescriptionArr
 }
