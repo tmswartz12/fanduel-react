@@ -1,4 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { fetchGamecast } from '../../store'
+import Livescore from './Livescore'
 
 class Gamecast extends React.Component {
   constructor(props) {
@@ -6,40 +9,16 @@ class Gamecast extends React.Component {
     this.state = {}
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.fetchGamecast()
+  }
 
   render() {
     return (
       <section className="main-body">
         <div className="main-body-left">
           <div className="main-body-left-row scorecard">
-            <div className="live-score">
-              <div className="home-team team-box">
-                <div className="home-team-name home">
-                  <div>GOLDEN STATE</div>
-                  <div className="bold">WARRIORS</div>
-                </div>
-                <div className="score">
-                  <div className="home bold">96</div>
-                </div>
-              </div>
-              <div className="game-clock">
-                <div>7:34 4th</div>
-                <div className="arena-info">
-                  <div>Oracle Arena</div>
-                  <div>Oakland, CA</div>
-                </div>
-              </div>
-              <div className="away-team team-box">
-                <div className="away-team-name away">
-                  <div>OKLAHOMA CITY</div>
-                  <div className="bold">THUNDER</div>
-                </div>
-                <div className="score">
-                  <div className="away bold">81</div>
-                </div>
-              </div>
-            </div>
+            <Livescore gamecastData={this.props.gamecastData} />
             <div className="game-cast">
               <div className="game-cast-last-play">
                 LAST PLAY: TV TIMEOUT. GO GET A SNACK.
@@ -205,4 +184,21 @@ class Gamecast extends React.Component {
   }
 }
 
-export default Gamecast
+const mapProps = state => {
+  return {
+    gamecastData: state.gamecast
+  }
+}
+
+const mapDispatch = dispatch => {
+  return {
+    fetchGamecast: () => dispatch(fetchGamecast())
+  }
+}
+
+const Connected = connect(
+  mapProps,
+  mapDispatch
+)(Gamecast)
+
+export default Connected
