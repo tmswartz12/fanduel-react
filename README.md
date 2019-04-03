@@ -11,6 +11,7 @@ To see part one... [Click Here!!!](https://github.com/tmswartz12/fanduel-html)
 - git clone https://github.com/tmswartz12/fanduel-react.git
 - npm install
 - npm run start-dev
+- open localhost at port 8080
 
 ## Technologies Used
 
