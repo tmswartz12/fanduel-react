@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fetchGamecast } from '../../store'
 import Livescore from './Livescore'
+import ShootingStats from './ShootingStats'
 
 class Gamecast extends React.Component {
   constructor(props) {
@@ -31,39 +32,23 @@ class Gamecast extends React.Component {
                   </span>
                 </div>
                 <div className="game-cast-shooting-stats">
-                  <div className="shooting-stats-column">
-                    <div className="shooting-stats shooting-stats-border">
-                      <div>FG%</div>
-                      <div className="home stat">55.7%</div>
-                    </div>
-                    <div className="shooting-stats shooting-stats-border">
-                      <div>FT%</div>
-                      <div className="home stat">60.0%</div>
-                    </div>
-                    <div className="shooting-stats">
-                      <div>3P%</div>
-                      <div className="home stat">55.5%</div>
-                    </div>
-                  </div>
+                  <ShootingStats
+                    shootingStats={
+                      this.props.gamecastData.away_team.shooting_stats
+                    }
+                    team="home"
+                  />
                   <img
                     className="shotchart"
                     alt="FanDuel Game Cast"
                     src="/public/images/court.png"
                   />
-                  <div className="shooting-stats-column">
-                    <div className="shooting-stats shooting-stats-border">
-                      <div>FG%</div>
-                      <div className="away stat">47.1%</div>
-                    </div>
-                    <div className="shooting-stats shooting-stats-border">
-                      <div>FT%</div>
-                      <div className="away stat">80.0%</div>
-                    </div>
-                    <div className="shooting-stats">
-                      <div>3P%</div>
-                      <div className="away stat">36.4%</div>
-                    </div>
-                  </div>
+                  <ShootingStats
+                    shootingStats={
+                      this.props.gamecastData.home_team.shooting_stats
+                    }
+                    team={'away'}
+                  />
                 </div>
               </div>
             </div>
