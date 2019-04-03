@@ -24,11 +24,9 @@ export function scoringPlayerHelper(name) {
     return name
   }
   let nameArr = name.split('_')
-
   for (let i = 0; i < nameArr.length; i++) {
     nameArr[i] = nameArr[i].charAt(0).toUpperCase() + nameArr[i].substring(1)
   }
-
   return nameArr.join(' ')
 }
 
