@@ -58,7 +58,7 @@ class Footer extends React.Component {
                           game.top_performers[0].position
                         }`}</div>
                         <div className="top-player-stats">
-                          {`${game.top_performers[0].points}points, ${
+                          {`${game.top_performers[0].points} points, ${
                             game.top_performers[0].rebounds
                           } assists`}
                         </div>
@@ -73,7 +73,7 @@ class Footer extends React.Component {
                           game.top_performers[1].position
                         }`}</div>
                         <div className="top-player-stats">
-                          {`${game.top_performers[1].points}points, ${
+                          {`${game.top_performers[1].points} points, ${
                             game.top_performers[1].rebounds
                           } assists`}
                         </div>
