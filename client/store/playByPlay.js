@@ -20,7 +20,7 @@ const defaultPlayByPlay = {
       scoring_player: ''
     },
     {
-      id: 0,
+      id: 1,
       away_score: 0,
       home_score: 0,
       description: '',
@@ -29,7 +29,7 @@ const defaultPlayByPlay = {
       scoring_player: ''
     },
     {
-      id: 0,
+      id: 2,
       away_score: 0,
       home_score: 0,
       description: '',
