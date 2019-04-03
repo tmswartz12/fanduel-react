@@ -8,9 +8,9 @@ To see part one... [Click Here!!!](https://github.com/tmswartz12/fanduel-html)
 
 ## Getting Started
 
-git clone https://github.com/tmswartz12/fanduel-react.git
-npm install
-npm run start-dev
+- git clone https://github.com/tmswartz12/fanduel-react.git
+- npm install
+- npm run start-dev
 
 ## Technologies Used
 
