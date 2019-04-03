@@ -6,6 +6,8 @@ class Gamecast extends React.Component {
     this.state = {}
   }
 
+  componentDidMount() {}
+
   render() {
     return (
       <section className="main-body">
