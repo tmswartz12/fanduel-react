@@ -11,7 +11,7 @@ To see part one... [Click Here!!!](https://github.com/tmswartz12/fanduel-html)
 - git clone https://github.com/tmswartz12/fanduel-react.git
 - npm install
 - npm run start-dev
-- open localhost at port 8080
+- go to http://localhost:8080/
 
 ## Technologies Used
 
@@ -23,3 +23,4 @@ To see part one... [Click Here!!!](https://github.com/tmswartz12/fanduel-html)
 - Mobile responsive design
 - Click on Footer Data to swap highlighted box score
 - Flyout Navbar for mobile use
+- Client side rendering
