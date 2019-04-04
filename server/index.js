@@ -10,7 +10,6 @@ const createApp = () => {
   app.use(express.urlencoded({ extended: true }))
 
   // static file-serving middleware
-
   app.use(express.static(path.join(__dirname, '..', 'public')))
 
   // sends index.html
