@@ -10,13 +10,13 @@ To see part one... [Click Here!!!](https://github.com/tmswartz12/fanduel-html)
 
 - git clone https://github.com/tmswartz12/fanduel-react.git
 - npm install
-- npm run start-dev
+- npm run start
 - go to http://localhost:8080/
 
 ## Technologies Used
 
-- React - Front end framework
-- React + Redux - state management
+- React
+- Redux
 
 ## Features
 
