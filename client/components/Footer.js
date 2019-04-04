@@ -7,7 +7,6 @@ class Footer extends React.Component {
   constructor(props) {
     super()
     this.state = {
-      toggle: false,
       footerData: []
     }
     this.handleFooterClick = this.handleFooterClick.bind(this)
@@ -15,7 +14,6 @@ class Footer extends React.Component {
 
   componentDidMount() {
     this.props.fetchFooter()
-    this.setState({ toggle: true })
   }
 
   handleFooterClick(idx) {
