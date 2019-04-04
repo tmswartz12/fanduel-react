@@ -1,23 +1,33 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchFooter } from '../store'
-import { ordinalHelper } from '../utils'
+import { ordinalHelper, inPlaceSwap } from '../utils'
 
 class Footer extends React.Component {
   constructor(props) {
     super()
     this.state = {
-      loaded: false
+      toggle: false,
+      footerData: []
     }
+    this.handleFooterClick = this.handleFooterClick.bind(this)
   }
 
   componentDidMount() {
     this.props.fetchFooter()
-    this.setState({ loaded: true })
+    this.setState({ toggle: true })
+  }
+
+  handleFooterClick(idx) {
+    let footerData = inPlaceSwap(this.props.footerData, idx)
+    this.setState({ footerData })
   }
 
   render() {
-    let footerData = this.props.footerData
+    let footerData = this.state.footerData.length
+      ? this.state.footerData
+      : this.props.footerData
+
     return (
       <footer className="footer">
         <div className="league-row">
@@ -87,7 +97,10 @@ class Footer extends React.Component {
               )
             } else {
               return (
-                <div key={game.game_id}>
+                <div
+                  onClick={() => this.handleFooterClick(idx)}
+                  key={game.game_id}
+                >
                   <div className="unactive-boxscore">
                     <div className="unactive-boxscore-row">
                       <div className="unactive-boxscore-team-column">
