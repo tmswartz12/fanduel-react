@@ -79,6 +79,7 @@ section {
 }
 .nav-link-container:hover {
   background-color: #4f5a61;
+  cursor: pointer;
 }
 
 .nav-link-container:active {
@@ -609,6 +610,11 @@ footer {
   border-right: 1px solid #686868;
   color: #91979b;
   font-size: 12px;
+}
+
+.unactive-boxscore:hover {
+  background-color: #686868;
+  cursor: pointer;
 }
 
 .unactive-boxscore-row {
