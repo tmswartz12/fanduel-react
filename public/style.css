@@ -163,6 +163,10 @@ section {
   z-index: 11;
 }
 
+.flyout-header:hover {
+  cursor: pointer;
+}
+
 .full {
   width: 100%;
 }
@@ -674,6 +678,9 @@ footer {
     justify-content: flex-end;
     color: white;
     font-size: 30px;
+  }
+  .hamburger:hover {
+    cursor: pointer;
   }
 
   .main-body-left {
