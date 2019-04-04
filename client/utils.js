@@ -46,3 +46,10 @@ export function descriptionHelper(description) {
   }
   return updatedDescriptionArr
 }
+
+export function inPlaceSwap(dataArr, idx) {
+  let temp = dataArr[0]
+  dataArr[0] = dataArr[idx]
+  dataArr[idx] = temp
+  return dataArr
+}
